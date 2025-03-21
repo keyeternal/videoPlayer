@@ -16,19 +16,19 @@ StyleSheet = ("""
     }
     
     QPushButton {
-        border: 3px solid;
+        border: none;
         background: transparent;
     }
     
     QPushButton:pressed {
-        background: transparent; /* Ensure transparency when pressed */
+        background: transparent;
     }
 """)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = VideoPlayer()
-
+    win.setStyleSheet(StyleSheet)
     win.setWindowTitle("Видео-проигрыватель")
     win.setFixedSize(700, 500)
     win.show()
