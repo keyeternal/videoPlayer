@@ -6,9 +6,6 @@ from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import *
 from PyQt5.QtWidgets import *
 
-
-
-
 class VideoPlayer(QWidget):
     def __init__(self):
         super().__init__()
@@ -23,25 +20,46 @@ class VideoPlayer(QWidget):
         # Создание элементов
 
         self.playPauseButton = QPushButton()
-        self.playPauseButton.setFixedWidth(25)
+        self.playPauseButton.setObjectName("OnlyIconButton")
+        self.ppb = QIcon("assets/playIcon.png")
+        self.playPauseButton.setIcon(self.ppb)
+        self.playPauseButton.setIconSize(QSize(40, 40))
+        self.playPauseButton.setFixedSize(45, 45)
 
-        self.openFileButton = QPushButton("Открть")
-        self.openFileButton.setFixedWidth(25)
+        self.openFileButton = QPushButton()
+        self.openFileButton.setObjectName("OnlyIconButton")
+        self.ofb = QIcon("assets/openVideoIcon.png")
+        self.openFileButton.setIcon(self.ofb)
+        self.openFileButton.setIconSize(QSize(40, 40))
+        self.openFileButton.setFixedSize(45, 45)
 
         self.skipBackwardButton30 = QPushButton()
+        self.skipBackwardButton30.setObjectName("OnlyIconButton")
         self.sbb30 = QIcon("assets/replay30Icon.png")
         self.skipBackwardButton30.setIcon(self.sbb30)
         self.skipBackwardButton30.setIconSize(QSize(40, 40))
         self.skipBackwardButton30.setFixedSize(45, 45)
 
-        self.skipForwardButton15 = QPushButton()
-        self.skipForwardButton15.setFixedWidth(25)
+        self.skipForwardButton30 = QPushButton()
+        self.skipForwardButton30.setObjectName("OnlyIconButton")
+        self.sfb30 = QIcon("assets/forward30Icon.png")
+        self.skipForwardButton30.setIcon(self.sfb30)
+        self.skipForwardButton30.setIconSize(QSize(40, 40))
+        self.skipForwardButton30.setFixedSize(45, 45)
 
         self.skipForwardButton5 = QPushButton()
-        self.skipForwardButton5.setFixedWidth(25)
+        self.skipForwardButton5.setObjectName("OnlyIconButton")
+        self.sfb5 = QIcon("assets/forward5Icon.png")
+        self.skipForwardButton5.setIcon(self.sfb5)
+        self.skipForwardButton5.setIconSize(QSize(40, 40))
+        self.skipForwardButton5.setFixedSize(45, 45)
 
         self.skipBackwardButton5 = QPushButton()
-        self.skipBackwardButton5.setFixedWidth(25)
+        self.skipBackwardButton5.setObjectName("OnlyIconButton")
+        self.sbb5 = QIcon("assets/replay5Icon.png")
+        self.skipBackwardButton5.setIcon(self.sbb5)
+        self.skipBackwardButton5.setIconSize(QSize(40, 40))
+        self.skipBackwardButton5.setFixedSize(45, 45)
 
         self.videoTimeLabel = QLabel("00:00")
         self.videoTimeLabel.setFixedHeight(10)
@@ -60,7 +78,7 @@ class VideoPlayer(QWidget):
         self.openFileButton.clicked.connect(self.openVideo)
         self.skipBackwardButton30.clicked.connect(self.skipBackward30)
         self.skipBackwardButton5.clicked.connect(self.skipBackward5)
-        self.skipForwardButton15.clicked.connect(self.skipForward15)
+        self.skipForwardButton30.clicked.connect(self.skipForward30)
         self.skipForwardButton5.clicked.connect(self.skipForward5)
         self.volumeSlider.valueChanged.connect(self.volumeSliderChange)
         self.mediaPlayer.positionChanged.connect(self.updateSliderPosition)
@@ -84,7 +102,7 @@ class VideoPlayer(QWidget):
         self.miniControls.addWidget(self.skipBackwardButton5)
         self.miniControls.addWidget(self.playPauseButton)
         self.miniControls.addWidget(self.skipForwardButton5)
-        self.miniControls.addWidget(self.skipForwardButton15)
+        self.miniControls.addWidget(self.skipForwardButton30)
 
         self.controls.addItem(self.rightSpacer)
 
@@ -110,7 +128,6 @@ class VideoPlayer(QWidget):
             print(f"Ошибка при открытии файла: {e}")
 
     def play_pause(self): # Запустить / остановить воспроизведение
-        if self.fileName:
             if self.mediaPlayer.state() == QMediaPlayer.PlayingState:
                 self.mediaPlayer.pause()
                 self.playPauseButton.setText("Запуск")
@@ -118,9 +135,9 @@ class VideoPlayer(QWidget):
                 self.mediaPlayer.play()
                 self.playPauseButton.setText("Пауза")
 
-    def skipForward15(self, videoDuration):  # Перемотка вперед (15С)
+    def skipForward30(self, videoDuration):  # Перемотка вперед (15С)
         currentPosition = self.mediaPlayer.position()
-        self.mediaPlayer.setPosition(min(videoDuration, currentPosition + 15000))
+        self.mediaPlayer.setPosition(min(videoDuration, currentPosition + 30000))
 
     def skipForward5(self, videoDuration): # Перемотка вперед (5С)
         currentPosition = self.mediaPlayer.position()
