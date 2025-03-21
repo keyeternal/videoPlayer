@@ -1,5 +1,3 @@
-videoPlayer
-
 videoPlayer is a simple PyQt5 project with basic tools to run different kinds of videos. It supports many video formats, such as .mp4, .avi, .mov, .mkv, etc. Currently in development process, different features will be added in future time.
 
 Changes history
