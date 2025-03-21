@@ -29,7 +29,7 @@ class VideoPlayer(QWidget):
         self.openFileButton.setFixedWidth(25)
 
         self.skipBackwardButton30 = QPushButton()
-        self.sbb30 = QIcon("replay30Icon.png")
+        self.sbb30 = QIcon("assets/replay30Icon.png")
         self.skipBackwardButton30.setIcon(self.sbb30)
         self.skipBackwardButton30.setIconSize(QSize(40, 40))
         self.skipBackwardButton30.setFixedSize(45, 45)
