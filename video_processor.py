@@ -25,7 +25,7 @@ class VideoPlayer(QWidget):
         self.playPauseButton = QPushButton()
         self.playPauseButton.setFixedWidth(25)
 
-        self.openFileButton = QPushButton("Открыть")
+        self.openFileButton = QPushButton("Открть")
         self.openFileButton.setFixedWidth(25)
 
         self.skipBackwardButton30 = QPushButton()
