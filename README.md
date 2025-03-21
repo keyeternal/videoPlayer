@@ -5,3 +5,5 @@ Changes history
 vp-182103: Changed volume slider position, cosmetic code changes, removed buttons background.
 
 vp-182103a: Added feature request template
+
+vp-222103: Added keyboard shortcuts, cosmetic code changes

@@ -12,9 +12,12 @@ class VideoPlayer(QWidget):
     def __init__(self):
         super().__init__()
 
+        # Назначение рабочей директории
 
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(self.script_dir)
+
+        # Создание виджета видео и привязка мультимедиа
 
         self.mediaPlayer = QMediaPlayer()
         self.videoWidget = QVideoWidget()
@@ -22,11 +25,10 @@ class VideoPlayer(QWidget):
 
         # Создание элементов
 
-        self.p = QIcon("assets/pauseIcon.png")
-
         self.playPauseButton = QPushButton()
         self.playPauseButton.setObjectName("OnlyIconButton")
         self.playPauseButton.setFlat(True)
+        self.p = QIcon("assets/pauseIcon.png")
         self.ppb = QIcon("assets/playIcon.png")
         self.playPauseButton.setIcon(self.ppb)
         self.playPauseButton.setIconSize(QSize(40, 40))
@@ -83,7 +85,16 @@ class VideoPlayer(QWidget):
         self.positionSlider.setRange(0, 0)
         self.positionSlider.setValue(0)
 
-        # Подключение элементов
+        # Настройка сочетаний клавиш
+
+        self.pps = QShortcut("space", self)
+        self.pps.activated.connect(self.play_pause)
+        self.sbs = QShortcut("left", self)
+        self.sbs.activated.connect(self.skipBackward5)
+        self.skipForwardShortcut = QShortcut("right", self)
+        self.skipForwardShortcut.activated.connect(self.skipForward5)
+
+        # Назначение элементов
 
         self.playPauseButton.clicked.connect(self.play_pause)
         self.openFileButton.clicked.connect(self.openVideo)
@@ -146,11 +157,11 @@ class VideoPlayer(QWidget):
                 self.mediaPlayer.play()
                 self.playPauseButton.setIcon(self.p)
 
-    def skipForward30(self, videoDuration):  # Перемотка вперед (15С)
+    def skipForward30(self):  # Перемотка вперед (30C)
         currentPosition = self.mediaPlayer.position()
         self.mediaPlayer.setPosition(currentPosition + 30000)
 
-    def skipForward5(self, videoDuration): # Перемотка вперед (5С)
+    def skipForward5(self): # Перемотка вперед (5С)
         currentPosition = self.mediaPlayer.position()
         self.mediaPlayer.setPosition(currentPosition + 5000)
 
