@@ -2,4 +2,6 @@ videoPlayer is a simple PyQt5 project with basic tools to run different kinds of
 
 Changes history
 
-vp-18042103: Changed volume slider position, cosmetic code changes, removed buttons background.
+vp-182103: Changed volume slider position, cosmetic code changes, removed buttons background.
+
+vp-182103a: Added feature request template
