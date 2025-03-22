@@ -5,12 +5,14 @@ from PyQt5.QtGui import *
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import *
 from PyQt5.QtWidgets import *
+from PyQt5.uic import loadUi
 
 
 # Set up the MenuBar
 class VideoPlayer(QWidget):
     def __init__(self):
         super().__init__()
+
 
         # Назначение рабочей директории
 
@@ -136,6 +138,69 @@ class VideoPlayer(QWidget):
 
         self.setLayout(self.layout)
 
+        self.menuBar = QMenuBar(self) # Создание меню-бара
+
+        # Создание меню в меню-баре
+
+        self.fileMenu = self.menuBar.addMenu("Файл")
+        self.videoMenu = self.menuBar.addMenu("Видео")
+
+        # Добавление пунктов в меню "Файл"
+
+        self.openAction = QAction("Открыть", self)
+        self.openAction.setShortcut("Ctrl + O")
+        self.openAction.triggered.connect(self.openVideo)
+
+        self.exitAction = QAction("Выход", self)
+        self.exitAction.setShortcut("Ctrl + Q")
+        self.exitAction.triggered.connect(self.close)
+
+        self.fileMenu.addAction(self.openAction)
+        self.fileMenu.addAction(self.exitAction)
+
+        # Добавление пунктов в меню "Видео"
+
+        self.playPauseAction = QAction("Запуск/Пауза", self)
+        self.playPauseAction.triggered.connect(self.play_pause)
+        self.videoMenu.addAction(self.playPauseAction)
+        self.videoMenu.addSeparator()
+
+        # Суб-меню перемотки в меню "Видео"
+
+        self.skipMenu = self.videoMenu.addMenu("Перемотка")
+        self.skipForward30Action = QAction("+ 30с", self)
+        self.skipForward30Action.triggered.connect(self.skipForward30)
+        self.skipForward5Action = QAction("+ 5с", self)
+        self.skipForward5Action.triggered.connect(self.skipForward5)
+        self.skipBack30Action = QAction("- 30с", self)
+        self.skipBack30Action.triggered.connect(self.skipBackward30)
+        self.skipBack5Action = QAction("- 5с", self)
+        self.skipBack5Action.triggered.connect(self.skipBackward5)
+
+        self.skipMenu.addAction(self.skipForward30Action)
+        self.skipMenu.addAction(self.skipForward5Action)
+        self.skipMenu.addAction(self.skipBack30Action)
+        self.skipMenu.addAction(self.skipBack5Action)
+
+        # Суб-меню скорости воспроизведения в меню "Видео"
+
+        self.playbackSpeedMenu = self.videoMenu.addMenu("Скорость видео")
+        self.speed05x = QAction("0.5x", self)
+        self.speed1x = QAction("1x ( Нормальная )", self)
+        self.speed2x = QAction("2x", self)
+        self.speed05x.triggered.connect(lambda: self.setPlaybackSpeed(0.5))
+        self.speed1x.triggered.connect(lambda: self.setPlaybackSpeed(1))
+        self.speed2x.triggered.connect(lambda: self.setPlaybackSpeed(2))
+
+        self.playbackSpeedMenu.addAction(self.speed05x)
+        self.playbackSpeedMenu.addAction(self.speed1x)
+        self.playbackSpeedMenu.addAction(self.speed2x)
+
+        self.layout.setMenuBar(self.menuBar) # Добавление менюбара к окну
+
+    def setPlaybackSpeed(self, speed): # Изменение скорости видео
+        print(f"Изминение скорости на {speed}")
+        self.mediaPlayer.setPlaybackRate(speed)
 
     def openVideo(self): # Открытие файла и авто воспроизведение видео
         try:

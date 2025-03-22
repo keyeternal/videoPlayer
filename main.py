@@ -1,4 +1,6 @@
 import sys
+
+import video_processor
 from video_processor import VideoPlayer
 from PyQt5.QtWidgets import QApplication
 

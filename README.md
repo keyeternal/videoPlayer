@@ -7,3 +7,5 @@ vp-182103: Changed volume slider position, cosmetic code changes, removed button
 vp-182103a: Added feature request template
 
 vp-222103: Added keyboard shortcuts, cosmetic code changes
+
+vp-132203: Added menuBar, containing playback speed feature. Cosmetic code changes
