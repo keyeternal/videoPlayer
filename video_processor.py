@@ -147,11 +147,11 @@ class VideoPlayer(QWidget):
 
         # Добавление пунктов в меню "Файл"
 
-        self.openAction = QAction("Открыть", self)
+        self.openAction = QAction("Открыть ( Ctrl + O )", self)
         self.openAction.setShortcut("Ctrl + O")
         self.openAction.triggered.connect(self.openVideo)
 
-        self.exitAction = QAction("Выход", self)
+        self.exitAction = QAction("Выход ( Ctrl + Q )", self)
         self.exitAction.setShortcut("Ctrl + Q")
         self.exitAction.triggered.connect(self.close)
 
